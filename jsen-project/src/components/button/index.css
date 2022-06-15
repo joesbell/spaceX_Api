@@ -1,0 +1,23 @@
+.buttoBox{
+    display: inline-block;
+    min-width: 40px;
+    padding: 6px 10px;
+    font-size: 12px;
+    border: 1px solid #ddd;
+    text-align: center;
+    cursor: pointer;
+    margin: 3px 5px;
+}
+.normal{
+    border: 1px solid #1f80ff;
+    background: #1f80ff;
+    color: white;
+}
+.disabled{
+    pointer-events: none;
+    cursor:no-drop;
+    background: #ddd;
+    color: gray;
+    border: 1px solid #ddd;
+
+}

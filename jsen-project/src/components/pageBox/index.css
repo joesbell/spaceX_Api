@@ -1,0 +1,6 @@
+.pageBox{
+    text-align: right!important;
+}
+.pageBox > * {
+    margin: 5px;
+}

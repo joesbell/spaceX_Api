@@ -1,0 +1,65 @@
+.speaxWapper{
+    padding: 20px;
+    height: 100%;
+}
+.pure-table{
+    border-collapse: collapse;
+    width:100%;
+    border:1px solid #c6c6c6 !important;
+    margin:20px 0;
+}
+.pure-table th{
+    border-collapse: collapse;
+    border-right:1px solid #c6c6c6 !important;
+    border-bottom:1px solid #c6c6c6 !important;
+    background-color:#ddeeff !important; 
+    padding:5px 9px;
+    font-size:14px;
+    font-weight:normal;
+    text-align:center;
+}
+.pure-table td{
+    border-collapse: collapse;
+    border-right:1px solid #c6c6c6 !important;
+    border-bottom:1px solid #c6c6c6 !important; 
+    padding:5px 9px;
+    font-size:12px;
+    font-weight:normal;
+    text-align:center;
+    /* word-break: break-all; */
+}
+.pure-table tr:nth-child(odd){
+    background-color:#fff !important; 
+}
+.pure-table tr:nth-child(even){
+    background-color: #f8f8f8 !important;
+}
+
+.m_bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45);
+    text-align: end;
+}
+.m_point {
+    position: absolute;
+    width: 300px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius:5px;
+    padding: 5px;
+}
+.m_active {
+    display: none
+}
+.m_content{
+    text-align: left;
+    min-height: 200px;
+}
