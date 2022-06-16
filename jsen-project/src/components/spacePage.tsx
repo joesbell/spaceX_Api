@@ -2,23 +2,22 @@
  * @Author: joesbell joesbell@163.com
  * @Date: 2022-06-13 15:53:30
  * @LastEditors: joesbell joesbell@163.com
- * @LastEditTime: 2022-06-15 17:19:58
+ * @LastEditTime: 2022-06-16 16:01:10
  * @FilePath: /spaceX_Api/jsen-project/src/components/spacePage.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React,{useState,useEffect,useCallback, useRef} from 'react';
+import React,{useState,useEffect,useCallback} from 'react';
 import { useQuery } from '@apollo/client';
 import './index.css'
 import {PastLaunchData,LaunchInventory,PastLaunchVars,GET_PAST_LAUNCH} from '../TInit/PastLaunches';
 import PageBox from './pageBox/pageBox';
 import Button from './button/button';
-import L_Form from './form/form';
-
+import { Path, useForm, UseFormRegister, SubmitHandler } from "react-hook-form";
+import Form from './form/form';
 
 
 export const  SpacePage:React.FC=()=>{
 
-  
   const [limit, setLimit] = useState<number>(5);
   const [offset, setOffset] = useState<number>(0);
   const [visiabal,setVis]=useState<boolean>(false)
@@ -26,7 +25,6 @@ export const  SpacePage:React.FC=()=>{
     GET_PAST_LAUNCH,
     { variables: { limit,offset} }
   );
-
   const changePage=useCallback((pnum:number)=>setOffset(pnum),[])
 
   const changeSize=useCallback((psize:number)=>setLimit(psize),[])
@@ -34,7 +32,14 @@ export const  SpacePage:React.FC=()=>{
   const changeModal=(vis:boolean)=>{
     setVis(vis)
   }
-  const launchForm=useRef<any>(null);
+  interface RefFunType{
+    getForm:Function
+  }
+  const formData=React.useRef<RefFunType>()
+  const getForm=()=>{
+    console.log(formData.current?.getForm());
+    
+  }
   if (loading) {
     return <div>loading</div>;
   }
@@ -82,10 +87,10 @@ export const  SpacePage:React.FC=()=>{
                   <p style={{padding:'10px',textAlign:'left'}}>next Launch</p>
                   <hr></hr>
                   <div className='m_content'>
-                    <L_Form ref={launchForm}/>
+                  <Form ref={formData}/>
                   </div>
                   <div className='m_pop'>
-                  <Button type='normal' onClick={handleSubmit(onSubmit)}>submit</Button>
+                  <Button type='normal' onClick={getForm}>submit</Button>
                   <Button onClick={()=>changeModal(false)}>cancel</Button>
                   </div>
               </div>

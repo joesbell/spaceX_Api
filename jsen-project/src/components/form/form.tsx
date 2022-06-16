@@ -2,11 +2,11 @@
  * @Author: joesbell joesbell@163.com
  * @Date: 2022-06-15 16:57:54
  * @LastEditors: joesbell joesbell@163.com
- * @LastEditTime: 2022-06-15 17:02:07
+ * @LastEditTime: 2022-06-16 15:39:02
  * @FilePath: /spaceX_Api/jsen-project/src/components/form/form.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import React,{useCallback} from 'react';
+import React,{forwardRef, useCallback, useImperativeHandle} from 'react';
 import './index.css'
 import { Path, useForm, UseFormRegister, SubmitHandler } from "react-hook-form";
 
@@ -34,9 +34,16 @@ interface IFormValues {
     </div>
   );
 
-const Form:React.FC=()=>{
+const Form=forwardRef((props:any,ref:React.Ref<unknown>|undefined)=>{
+    useImperativeHandle(
+        ref,
+        ()=>({
+            getForm:()=>handleSubmit(onSubmit)
+        })
+    )
     const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormValues>();
-    const onSubmit: SubmitHandler<IFormValues> = data => console.log(data);
+    const onSubmit: SubmitHandler<IFormValues> = data => {console.log(data);
+};
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
         <Input label="mission_name" register={register} required />
@@ -47,5 +54,5 @@ const Form:React.FC=()=>{
         <Input label="details" register={register} required />
         </form>
     )
-  }
+  })
   export default Form
